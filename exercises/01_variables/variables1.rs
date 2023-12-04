@@ -1,6 +1,11 @@
-fn main() {
-    // TODO: Add the missing keyword.
-    x = 5;
+// variables1.rs
+//
+// Make me compile!
+//
+// Execute `rustlings hint variables1` or use the `hint` watch subcommand for a
+// hint.
 
-    println!("x has the value {x}");
+fn main() {
+    let x = 5;
+    println!("x has the value {}", x);
 }

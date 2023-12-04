@@ -3,12 +3,12 @@
 // Don't worry about the function bodies themselves, we are only interested in
 // the signatures for now.
 
-fn is_even(num: i64) -> bool {
-    num % 2 == 0
+fn main() {
+    let original_price = 51;
+    println!("Your sale price is {}", sale_price(original_price));
 }
 
-// TODO: Fix the function signature.
-fn sale_price(price: i64) -> {
+fn sale_price(price: i32) -> i32 {
     if is_even(price) {
         price - 10
     } else {
