@@ -1,16 +1,22 @@
 fn vec_loop(input: &[i32]) -> Vec<i32> {
     let mut output = Vec::new();
 
-    for element in input {
-        // TODO: Multiply each element in the `input` slice by 2 and push it to
-        // the `output` vector.
+fn vec_loop(mut v: Vec<i32>) -> Vec<i32> {
+    for element in v.iter_mut() {
+        // TODO: Fill this up so that each element in the Vec `v` is
+        // multiplied by 2.
+        *element *= 2
     }
 
     output
 }
 
-fn main() {
-    // You can optionally experiment here.
+fn vec_map(v: &Vec<i32>) -> Vec<i32> {
+    v.iter().map(|element| {
+        // TODO: Do the same thing as above - but instead of mutating the
+        // Vec, you can just return the new number!
+        element * 2
+    }).collect()
 }
 
 #[cfg(test)]
