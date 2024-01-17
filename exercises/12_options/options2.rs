@@ -1,6 +1,7 @@
-fn main() {
-    // You can optionally experiment here.
-}
+// options2.rs
+//
+// Execute `rustlings hint options2` or use the `hint` watch subcommand for a
+// hint.
 
 #[cfg(test)]
 mod tests {
@@ -9,8 +10,8 @@ mod tests {
         let target = "rustlings";
         let optional_target = Some(target);
 
-        // TODO: Make this an if-let statement whose value is `Some`.
-        word = optional_target {
+        // TODO: Make this an if let statement whose value is "Some" type
+        if let word = optional_target.unwrap() {
             assert_eq!(word, target);
         }
     }
@@ -26,10 +27,10 @@ mod tests {
 
         let mut cursor = range;
 
-        // TODO: Make this a while-let statement. Remember that `Vec::pop()`
-        // adds another layer of `Option`. You can do nested pattern matching
-        // in if-let and while-let statements.
-        integer = optional_integers.pop() {
+        // TODO: make this a while let statement - remember that vector.pop also
+        // adds another layer of Option<T>. You can stack `Option<T>`s into
+        // while let and if let.
+        while let Some(integer) = optional_integers.pop().flatten() {
             assert_eq!(integer, cursor);
             cursor -= 1;
         }
