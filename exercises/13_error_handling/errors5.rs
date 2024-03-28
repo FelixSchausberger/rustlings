@@ -11,8 +11,22 @@
 // context. For this exercise, that context is the potential errors which
 // can be returned in a `Result`.
 
-use std::error::Error;
+use std::error;
 use std::fmt;
+use std::num::ParseIntError;
+
+// TODO: update the return type of `main()` to make this compile.
+fn main() -> Result<(), Box<dyn error::Error>> {
+    let pretend_user_input = "42";
+    let x: i64 = pretend_user_input.parse()?;
+    println!("output={:?}", PositiveNonzeroInteger::new(x)?);
+    Ok(())
+}
+
+// Don't change anything below this line.
+
+#[derive(PartialEq, Debug)]
+struct PositiveNonzeroInteger(u64);
 
 #[derive(PartialEq, Debug)]
 enum CreationError {
