@@ -45,9 +45,8 @@ outputs = { self, nixpkgs, flake-utils, rust-overlay }:
               cargo build --release --bin rustlings
             fi
 
-            echo "Rustlings development environment ready!"
-            echo "Using local rustlings v5.6.1 with exercise progress preserved."
-            echo "Run 'rustlings' to start the exercises."
+            echo "Rustlings v5.6.1 environment ready!"
+            echo "Run 'rustlings watch' to track your progress of exercises."
           '';
         };
       }

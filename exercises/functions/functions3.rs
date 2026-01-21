@@ -12,8 +12,3 @@ fn call_me(num: u32) {
         println!("Ring! Call number {}", i + 1);
     }
 }
-
-fn main() {
-    // TODO: Fix the function call.
-    call_me();
-}

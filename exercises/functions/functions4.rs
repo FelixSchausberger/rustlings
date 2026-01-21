@@ -16,7 +16,6 @@ fn sale_price(price: i32) -> i32 {
     }
 }
 
-fn main() {
-    let original_price = 51;
-    println!("Your sale price is {}", sale_price(original_price));
+fn is_even(num: i32) -> bool {
+    num % 2 == 0
 }
