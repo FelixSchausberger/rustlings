@@ -10,7 +10,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, rust-overlay }:
+outputs = { self, nixpkgs, flake-utils, rust-overlay }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         overlays = [ (import rust-overlay) ];
@@ -20,26 +20,33 @@
         rustToolchain = pkgs.rust-bin.stable.latest.default.override {
           extensions = [ "rust-src" "rust-analyzer" ];
         };
+        
+        rustlings5 = pkgs.rust-bin.stable."1.70.0".default.override {
+          extensions = [ "rust-src" "rust-analyzer" ];
+        };
+        
+        # Install rustlings 5.6.1 from crates.io and override exercises
+        
+
       in
       {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
-            rustToolchain
+            rustlings5
             cargo-watch
           ];
 
           shellHook = ''
-            export PATH="$HOME/.cargo/bin:$PATH"
-
-            RUSTLINGS_VERSION="6.5.0"
-            CURRENT_VERSION=$(rustlings --version 2>/dev/null | grep -oP '\d+\.\d+\.\d+' || echo "none")
-
-            if [ "$CURRENT_VERSION" != "$RUSTLINGS_VERSION" ]; then
-              echo "Installing rustlings v$RUSTLINGS_VERSION..."
-              cargo install rustlings --version $RUSTLINGS_VERSION --locked
+            export PATH="$HOME/.cargo/bin:$PWD/target/release:$PATH"
+            
+            # Build local rustlings if needed
+            if [ ! -f target/release/rustlings ]; then
+              echo "Building rustlings v5.6.1 locally..."
+              cargo build --release --bin rustlings
             fi
 
             echo "Rustlings development environment ready!"
+            echo "Using local rustlings v5.6.1 with exercise progress preserved."
             echo "Run 'rustlings' to start the exercises."
           '';
         };
